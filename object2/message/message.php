@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class message    留言本实体类
+ */
 class message{
     public $name;   //留言者姓名
     public $email;  //留言者联系方式
