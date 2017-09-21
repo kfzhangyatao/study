@@ -40,4 +40,32 @@ abstract class DecorateProcess extends ProcessRequest{
  *  具体装饰类
  */
 
+class LogRequest extends DecorateProcess{
+    function process(RequestHelper $requestHelper)
+    {
+        // TODO: Implement process() method.
+        print __CLASS__.": logging request\n";
+        $this->processrequest->process($requestHelper);
+    }
+}
 
+class AuthenticateRequest extends DecorateProcess{
+    function process(RequestHelper $requestHelper)
+    {
+        // TODO: Implement process() method.
+        print __CLASS__.": authenticate request\n";
+        $this->processrequest->process($requestHelper);
+    }
+}
+
+class StructureRequest extends DecorateProcess{
+    function process(RequestHelper $requestHelper)
+    {
+        // TODO: Implement process() method.
+        print __CLASS__.": structure request data\n";
+        $this->processrequest->process($requestHelper);
+    }
+}
+
+$process = new AuthenticateRequest( new StructureRequest( new LogRequest( new MainProcess())));
+$process->process( new RequestHelper());
